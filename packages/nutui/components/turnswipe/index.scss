@@ -1,0 +1,111 @@
+.nut-turnswipe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  overflow: hidden;
+  text-align: center;
+  background-color: #e9e9e9;
+  transform: translate(-50%, -50%);
+
+  // transform: translateZ(0);
+  .pointer {
+    position: absolute;
+    top: 50%;
+
+    // left: calc(50% - 35px);
+    // top: calc(50% - 40px);
+    left: 50%;
+    z-index: 99;
+    transform: translate(-43.75%, -50%);
+  }
+// stylelint-disable selector-class-pattern
+
+  .drawTable-name {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    width: calc(100% - 20px);
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+  }
+
+  .active {
+    .drawTable-name {
+      color: #07c160;
+    }
+  }
+
+  .drawTable-img {
+    position: absolute;
+    top: 60px;
+
+    /* 要居中就要50% - 宽度 / 2 */
+    left: calc(50% - 30px / 2);
+    width: 30px;
+    height: 30px;
+    
+    image {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .circle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-50%);
+  }
+
+  .rotate {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .turnswipe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+// stylelint-disable selector-id-pattern
+    #canvasWx {
+      width: 100%;
+      height: 100%;
+    }
+
+    .mlcanvas {
+      height: 50% !important;
+      margin-top: 25%;
+
+      canvas {
+        transform: scale(2);
+      }
+    }
+  }
+
+  .prize {
+    position: absolute;
+    top: 0;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+
+    .item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform-origin: center bottom;
+    }
+  }
+}

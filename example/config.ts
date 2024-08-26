@@ -378,6 +378,16 @@ export default {
           show: false,
           author: 'szg2008',
         },
+        {
+          name: 'Turnswipe',
+          uni: true,
+          sort: 18,
+          cName: '转盘滑动组件',
+          type: 'componment',
+          show: true,
+          desc: '头部导航',
+          author: 'jerikchan',
+        },
       ],
     },
     {

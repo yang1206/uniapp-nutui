@@ -3,7 +3,6 @@
   "type": "module",
   "version": "1.7.15",
   "private": "true",
-  "packageManager": "pnpm@9.0.5",
   "description": "",
   "author": "",
   "license": "MIT",
