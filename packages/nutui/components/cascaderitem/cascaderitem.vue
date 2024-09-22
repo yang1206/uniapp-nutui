@@ -173,6 +173,10 @@ function formatTabTitle(pane: CascaderPane) {
 const methods = {
   // 选中一个节点，静默模式不触发事件
   async handleNode(node: CascaderOption, silent?: boolean) {
+    if (node.level !== void 0 && (node.level !== Number(tabsCursor.value))) {
+      return
+    }
+
     const { disabled, loading } = node
 
     if ((!silent && disabled) || !panes.value[tabsCursor.value])
