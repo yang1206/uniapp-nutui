@@ -7,6 +7,18 @@
 ### 基础用法
 
 ```vue
+<template>
+  <div class="demo full">
+    <h2 class="title">
+      基础用法
+    </h2>
+    <div>
+      {{ generateRandomTextArray(900).join(' ') }}
+    </div>
+    <nut-safe-area position="bottom" />
+  </div>
+</template>
+
 <script setup lang="ts">
 function generateRandomTextArray(count: number) {
   const characters = 'abcdefghijklmnopqrstuvwxyz'
@@ -23,27 +35,15 @@ function generateRandomTextArray(count: number) {
   return textArray
 }
 </script>
-
-<template>
-  <div class="demo full">
-    <h2 class="title">
-      基础用法
-    </h2>
-    <div>
-      {{ generateRandomTextArray(900).join(' ') }}
-    </div>
-    <nut-safe-area position="bottom" />
-  </div>
-</template>
 ```
 
 ## SafeArea
 
 ### Props
 
-| 参数     | 说明         | 类型                | 默认值 |
-| -------- | ------------ | ------------------- | ------ |
-| position | 安全区的位置 | `'top' \| 'bottom'` | `-`    |
+| 参数     | 说明         | 类型   | 可选值          | 默认值 |
+| -------- | ------------ | ------ | --------------- | ------ |
+| position | 安全区的位置 | string | `left`/`bottom` | `-`    |
 
 ## 主题定制
 

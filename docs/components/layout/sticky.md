@@ -28,10 +28,10 @@
 
 ### Props
 
-| 参数                | 说明                   | 类型      | 默认值           |
-|-------------------|----------------------|---------|---------------|
-| offset-top        | 吸顶距离                 | number  | `0`           |
-| z-index           | 吸附时的层级               | number  | `2000`        |
+| 参数              | 说明                                     | 类型    | 默认值        |
+| ----------------- | ---------------------------------------- | ------- | ------------- |
+| offset-top        | 吸顶距离                                 | number  | `0`           |
+| z-index           | 吸附时的层级                             | number  | `2000`        |
 | custom-nav-height | 导航栏高度，自定义导航栏时，需要传入此值 | number  | `0`           |
-| disabled          | 是否禁用吸顶功能             | boolean | `false`       |
-| bg-color          | 组件背景颜色               | string  | `transparent` |
+| disabled          | 是否禁用吸顶功能                         | boolean | `false`       |
+| bg-color          | 组件背景颜色                             | string  | `transparent` |

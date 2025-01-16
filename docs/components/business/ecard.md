@@ -6,14 +6,10 @@
 
 ### 基础用法
 
-```html
-<template>
-  <nut-ecard v-model="money" :list="dataList"></nut-ecard>
-</template>
-```
-
-```typescript
-// `1.7.7` 开始提供 EcardDataItem 类型，之前版本使用 { price: number | number }
+```vue
+<script lang="ts" setup>
+import { ref } from 'vue'
+// `1.7.7` 开始提供 EcardDataItem 类型，之前版本使用 { price: number | string }
 import type { EcardDataItem } from 'nutui-uniapp'
 
 const money = ref<number>(0)
@@ -24,25 +20,28 @@ const dataList = ref<EcardDataItem[]>([
   { price: 30 },
   { price: 40 }
 ])
+</script>
+
+<template>
+  <nut-ecard v-model="money" :list="dataList"></nut-ecard>
+</template>
 ```
 
 ### 相关事件
 
-```html
-<template>
-  <nut-ecard v-model="money"
-             :list="dataList"
-             @update="onUpdate"
-             @change="onChange"
-             @input-change="onInputChange"
-             @change-step="onStepChange"
-             @input-click="onInputClick"></nut-ecard>
-</template>
-```
-
-```typescript
+```vue
+<script lang="ts" setup>
+import { ref } from 'vue'
 // `1.7.7` 开始提供 EcardChangeEvent、EcardDataValue 类型
-import type { EcardChangeEvent, EcardDataValue } from 'nutui-uniapp'
+import type { EcardChangeEvent, EcardDataValue, EcardDataItem } from 'nutui-uniapp'
+
+const money = ref<number>(0)
+const dataList = ref<EcardDataItem[]>([
+  { price: 10 },
+  { price: 20 },
+  { price: 30 },
+  { price: 40 }
+])
 
 // `1.7.7` 开始提供 update 事件
 function onUpdate(value: EcardDataValue) {
@@ -64,20 +63,35 @@ function onStepChange(count: number, price: EcardDataValue) {
 function onInputClick() {
   console.log('input clicked')
 }
+</script>
+
+<template>
+  <nut-ecard v-model="money"
+             :list="dataList"
+             @update="onUpdate"
+             @change="onChange"
+             @input-change="onInputChange"
+             @change-step="onStepChange"
+             @input-click="onInputClick"></nut-ecard>
+</template>
 ```
 
 ### 手动更新
 
 > 自 `1.7.7` 开始支持通过 `ref` 手动更新
 
-```html
-<template>
-  <nut-ecard ref="ecard" v-model="money" :list="dataList"></nut-ecard>
-</template>
-```
+```vue
+<script lang="ts" setup>
+import { ref } from 'vue'
+import type { EcardInst, EcardDataItem } from 'nutui-uniapp'
 
-```typescript
-import type { EcardInst } from 'nutui-uniapp'
+const money = ref<number>(0)
+const dataList = ref<EcardDataItem[]>([
+  { price: 10 },
+  { price: 20 },
+  { price: 30 },
+  { price: 40 }
+])
 
 const ecard = ref<EcardInst | null>(null)
 
@@ -103,6 +117,11 @@ function updateCount() {
     count: 2
   })
 }
+</script>
+
+<template>
+  <nut-ecard ref="ecard" v-model="money" :list="dataList"></nut-ecard>
+</template>
 ```
 
 ## API
@@ -140,7 +159,7 @@ function updateCount() {
 |-------|---------|-----------------|
 | price | 每张电子卡价格 | number \ string |
 
-### Methods
+### Exposes
 
 通过 [ref](https://vuejs.org/guide/essentials/template-refs.html#template-refs) 可以获取到 Ecard 实例并调用实例方法
 

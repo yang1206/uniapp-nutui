@@ -6,7 +6,7 @@
 
 ### 基础用法
 
-```html
+```vue
 <template>
   <nut-giftbox
     ref="refChild"
@@ -16,35 +16,37 @@
   </nut-giftbox>
   <div @click="initBox">再来一次</div>
 </template>
-<script lang="ts">
-  import { ref } from "vue";
-  export default {
-    setup() {
-      const refChild = ref();
-      const initBox = () => {
-        refChild.value.init();
-      };
-      const startTurns = () => {
-        console.log("开始");
-      };
-      const endTurns = () => {
-        console.log("结束");
-      };
-      return {
-        refChild,
-        initBox,
-        startTurns,
-        endTurns,
-      };
-    },
-  };
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const refChild = ref()
+function initBox() {
+  refChild.value.init()
+}
+function startTurns() {
+  uni.showToast({
+    title: '开始抽奖',
+    icon: 'none',
+  })
+}
+function endTurns() {
+  uni.showToast({
+    title: '恭喜你中奖了',
+    icon: 'success',
+  })
+}
 </script>
 ```
 
 ### Events
 
-| 事件名      | 说明                   | 回调参数 |
+| 事件名      | 说明                   | 类型 |
 | ----------- | ---------------------- | -------- |
-| init        | 礼盒初始化             | -        |
-| start-turns | 礼盒打开时候的回调函数 | -        |
-| end-turns   | 礼盒打开后的回调函数   | -        |
+| start-turns | 礼盒打开时候的回调函数 | () => true        |
+| end-turns   | 礼盒打开后的回调函数   | () => true        |
+
+### Exposes
+
+| 方法名 | 说明         | 类型      |
+| ------ | ------------ | --------- |
+| init  | 礼盒初始化 | ()=> void |

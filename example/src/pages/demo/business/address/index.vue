@@ -1,6 +1,6 @@
-<script lang="ts">
+<script setup lang="ts">
 import type { AddressExistRegionData, AddressRegionData, AddressType } from 'nutui-uniapp'
-import { defineComponent, reactive, ref, toRefs } from 'vue'
+import { reactive, ref } from 'vue'
 
 /* eslint-disable no-console */
 interface CalBack {
@@ -29,221 +29,189 @@ interface AddressResult extends AddressList {
   country: any
   town: any
 }
-export default defineComponent({
-  setup() {
-    const address = reactive<any>({
-      province: [
-        { id: 1, name: '北京', title: 'B' },
-        { id: 2, name: '广西', title: 'G' },
-        { id: 3, name: '江西', title: 'J' },
-        { id: 4, name: '四川', title: 'S' },
-        { id: 5, name: '浙江', title: 'Z' },
-      ],
-      city: [
-        { id: 7, name: '朝阳区', title: 'C' },
-        { id: 8, name: '崇文区', title: 'C' },
-        { id: 9, name: '昌平区', title: 'C' },
+const address = reactive<any>({
+  province: [
+    { id: 1, name: '北京', title: 'B' },
+    { id: 2, name: '广西', title: 'G' },
+    { id: 3, name: '江西', title: 'J' },
+    { id: 4, name: '四川', title: 'S' },
+    { id: 5, name: '浙江', title: 'Z' },
+  ],
+  city: [
+    { id: 7, name: '朝阳区', title: 'C' },
+    { id: 8, name: '崇文区', title: 'C' },
+    { id: 9, name: '昌平区', title: 'C' },
 
-        { id: 6, name: '石景山区', title: 'S' },
-        { id: 3, name: '八里庄街道', title: 'B' },
-        { id: 10, name: '北苑', title: 'B' },
-      ],
-      country: [
-        { id: 3, name: '八里庄街道', title: 'B' },
-        { id: 9, name: '北苑', title: 'B' },
-        { id: 4, name: '常营乡', title: 'C' },
-      ],
-      town: [],
-    })
-
-    const placeholder = ref(['请选择省', '请选择市', '请选择县'])
-    const value = ref([1, 7, 3])
-    const value2 = ref([1, 7, 3])
-
-    const showPopup = reactive({
-      normal: false,
-      normal2: false,
-      exist: false,
-      customImg: false,
-      other: false,
-      select: false,
-    })
-
-    const icon = reactive({
-      selectedIcon: 'heart-fill',
-      defaultIcon: 'heart1',
-      closeBtnIcon: 'close',
-      backBtnIcon: 'left',
-    })
-
-    const existAddress = ref([
-      {
-        id: 1,
-        addressDetail: '',
-        cityName: '次渠镇',
-        countyName: '通州区',
-        provinceName: '北京市',
-        selectedAddress: true,
-        townName: '',
-        name: '探探鱼',
-        phone: '182****1718',
-      },
-      {
-        id: 2,
-        addressDetail: '',
-        cityName: '钓鱼岛全区',
-        countyName: '',
-        provinceName: '钓鱼岛',
-        selectedAddress: false,
-        townName: '',
-        name: '探探鱼',
-        phone: '182****1718',
-      },
-      {
-        id: 3,
-        addressDetail: '京东大厦',
-        cityName: '大兴区',
-        countyName: '科创十一街18号院',
-        provinceName: '北京市',
-        selectedAddress: false,
-        townName: '',
-        name: '探探鱼',
-        phone: '182****1718',
-      },
-    ])
-
-    const text = reactive({
-      one: '请选择地址',
-      two: '请选择地址',
-      three: '请选择地址',
-      four: '请选择地址',
-      five: '请选择地址',
-      six: '请选择地址',
-    })
-
-    const showAddress = () => {
-      showPopup.normal = !showPopup.normal
-    }
-
-    const showAddress2 = () => {
-      showPopup.normal2 = !showPopup.normal2
-    }
-
-    const showSelected = () => {
-      showPopup.select = !showPopup.select
-    }
-
-    const onChange = (cal: CalBack, tag: string) => {
-      const name = (address)[cal.next!]
-      if (name?.length < 1)
-        (showPopup as any)[tag] = false
-    }
-    const close1 = (val: CalResult) => {
-      console.log(val)
-      showAddress()
-      text.one = val.data.addressStr
-    }
-
-    const close5 = (val: CalResult) => {
-      text.five = val.data.addressStr
-      value2.value = [val.data.province.id, val.data.city.id, val.data.country.id]
-    }
-
-    const close6 = (val: CalResult) => {
-      text.six = val.data.addressStr
-      value.value = [val.data.province.id, val.data.city.id, val.data.country.id]
-    }
-
-    const showAddressExist = () => {
-      showPopup.exist = true
-    }
-
-    const close2 = (val: CalResult) => {
-      console.log(val)
-      if (val.type === 'exist') {
-        const { provinceName, cityName, countyName, townName, addressDetail } = val.data
-        text.two = provinceName + cityName + countyName + townName + addressDetail
-      }
-      else {
-        text.two = val.data.addressStr
-      }
-    }
-    const selected = (prevExistAdd: AddressExistRegionData, nowExistAdd: AddressExistRegionData, _arr: AddressExistRegionData[]) => {
-      console.log(prevExistAdd)
-      console.log(nowExistAdd)
-    }
-
-    const showAddressOther = () => {
-      showPopup.other = true
-    }
-    const showCustomImg = () => {
-      showPopup.customImg = true
-    }
-
-    const close3 = (val: CalResult) => {
-      console.log(val)
-      if (val.type === 'exist') {
-        const { provinceName, cityName, countyName, townName, addressDetail } = val.data
-        text.three = provinceName + cityName + countyName + townName + addressDetail
-      }
-      else {
-        text.three = val.data.addressStr
-      }
-    }
-
-    const close4 = (val: CalResult) => {
-      console.log(val)
-      if (val.type === 'exist') {
-        const { provinceName, cityName, countyName, townName, addressDetail } = val.data
-        text.four = provinceName + cityName + countyName + townName + addressDetail
-      }
-      else {
-        text.four = val.data.addressStr
-      }
-    }
-
-    const switchModule = (val: { type: AddressType }) => {
-      if (val.type === 'custom')
-        console.log('点击了“选择其他地址”按钮')
-      else
-        console.log('点击了自定义地址左上角的返回按钮')
-    }
-
-    const closeMask = (val: {
-      closeWay: 'self' | 'mask' | 'cross'
-    }) => {
-      console.log('关闭弹层', val)
-    }
-
-    return {
-      value,
-      value2,
-      showAddress,
-      showAddress2,
-      showPopup,
-      onChange,
-      close1,
-      showAddressExist,
-      close2,
-      close5,
-      close6,
-      selected,
-      showSelected,
-      existAddress,
-      showAddressOther,
-      showCustomImg,
-      close3,
-      close4,
-      switchModule,
-      closeMask,
-      placeholder,
-      ...toRefs(icon),
-      ...toRefs(text),
-      ...toRefs(showPopup),
-      address,
-    }
-  },
+    { id: 6, name: '石景山区', title: 'S' },
+    { id: 3, name: '八里庄街道', title: 'B' },
+    { id: 10, name: '北苑', title: 'B' },
+  ],
+  country: [
+    { id: 3, name: '八里庄街道', title: 'B' },
+    { id: 9, name: '北苑', title: 'B' },
+    { id: 4, name: '常营乡', title: 'C' },
+  ],
+  town: [],
 })
+
+const placeholder = ref(['请选择省', '请选择市', '请选择县'])
+const value = ref([1, 7, 3])
+const value2 = ref([1, 7, 3])
+
+const showPopup = reactive({
+  normal: false,
+  normal2: false,
+  exist: false,
+  customImg: false,
+  other: false,
+  select: false,
+})
+
+const icon = reactive({
+  selectedIcon: 'heart-fill',
+  defaultIcon: 'heart1',
+  closeBtnIcon: 'close',
+  backBtnIcon: 'left',
+})
+
+const existAddress = ref([
+  {
+    id: 1,
+    addressDetail: '',
+    cityName: '次渠镇',
+    countyName: '通州区',
+    provinceName: '北京市',
+    selectedAddress: true,
+    townName: '',
+    name: '探探鱼',
+    phone: '182****1718',
+  },
+  {
+    id: 2,
+    addressDetail: '',
+    cityName: '钓鱼岛全区',
+    countyName: '',
+    provinceName: '钓鱼岛',
+    selectedAddress: false,
+    townName: '',
+    name: '探探鱼',
+    phone: '182****1718',
+  },
+  {
+    id: 3,
+    addressDetail: '京东大厦',
+    cityName: '大兴区',
+    countyName: '科创十一街18号院',
+    provinceName: '北京市',
+    selectedAddress: false,
+    townName: '',
+    name: '探探鱼',
+    phone: '182****1718',
+  },
+])
+
+const text = reactive({
+  one: '请选择地址',
+  two: '请选择地址',
+  three: '请选择地址',
+  four: '请选择地址',
+  five: '请选择地址',
+  six: '请选择地址',
+})
+
+function showAddress() {
+  showPopup.normal = !showPopup.normal
+}
+
+function showAddress2() {
+  showPopup.normal2 = !showPopup.normal2
+}
+
+function showSelected() {
+  showPopup.select = !showPopup.select
+}
+
+function onChange(cal: CalBack, tag: string) {
+  const name = (address)[cal.next!]
+  if (name?.length < 1)
+    (showPopup as any)[tag] = false
+}
+function close1(val: CalResult) {
+  console.log(val)
+  showAddress()
+  text.one = val.data.addressStr
+}
+
+function close5(val: CalResult) {
+  text.five = val.data.addressStr
+  value2.value = [val.data.province.id, val.data.city.id, val.data.country.id]
+}
+
+function close6(val: CalResult) {
+  text.six = val.data.addressStr
+  value.value = [val.data.province.id, val.data.city.id, val.data.country.id]
+}
+
+function showAddressExist() {
+  showPopup.exist = true
+}
+
+function close2(val: CalResult) {
+  console.log(val)
+  if (val.type === 'exist') {
+    const { provinceName, cityName, countyName, townName, addressDetail } = val.data
+    text.two = provinceName + cityName + countyName + townName + addressDetail
+  }
+  else {
+    text.two = val.data.addressStr
+  }
+}
+function selected(prevExistAdd: AddressExistRegionData, nowExistAdd: AddressExistRegionData, _arr: AddressExistRegionData[]) {
+  console.log(prevExistAdd)
+  console.log(nowExistAdd)
+}
+
+function showAddressOther() {
+  showPopup.other = true
+}
+function showCustomImg() {
+  showPopup.customImg = true
+}
+
+function close3(val: CalResult) {
+  console.log(val)
+  if (val.type === 'exist') {
+    const { provinceName, cityName, countyName, townName, addressDetail } = val.data
+    text.three = provinceName + cityName + countyName + townName + addressDetail
+  }
+  else {
+    text.three = val.data.addressStr
+  }
+}
+
+function close4(val: CalResult) {
+  console.log(val)
+  if (val.type === 'exist') {
+    const { provinceName, cityName, countyName, townName, addressDetail } = val.data
+    text.four = provinceName + cityName + countyName + townName + addressDetail
+  }
+  else {
+    text.four = val.data.addressStr
+  }
+}
+
+function switchModule(val: { type: AddressType }) {
+  if (val.type === 'custom')
+    console.log('点击了“选择其他地址”按钮')
+  else
+    console.log('点击了自定义地址左上角的返回按钮')
+}
+
+function closeMask(val: {
+  closeWay: 'self' | 'mask' | 'cross'
+}) {
+  console.log('关闭弹层', val)
+}
 </script>
 
 <template>
@@ -253,13 +221,13 @@ export default defineComponent({
     </h2>
     <nut-cell
       title="选择地址"
-      :desc="one"
+      :desc="text.one"
       is-link
       @click="showAddress"
     />
 
     <nut-address
-      v-model:visible="normal"
+      v-model:visible="showPopup.normal"
       :province="address.province"
       :city="address.city"
       :country="address.country"
@@ -273,14 +241,14 @@ export default defineComponent({
     </h2>
     <nut-cell
       title="选择地址"
-      :desc="six"
+      :desc="text.six"
       is-link
       @click="showSelected"
     />
 
     <nut-address
       v-model="value"
-      v-model:visible="select"
+      v-model:visible="showPopup.select"
       :province="address.province"
       :city="address.city"
       :country="address.country"
@@ -295,14 +263,14 @@ export default defineComponent({
     </h2>
     <nut-cell
       title="选择地址"
-      :desc="five"
+      :desc="text.five"
       is-link
       @click="showAddress2"
     />
 
     <nut-address
       v-model="value2"
-      v-model:visible="normal2"
+      v-model:visible="showPopup.normal2"
       type="custom2"
       :province="address.province"
       :city="address.city"
@@ -319,13 +287,13 @@ export default defineComponent({
     </h2>
     <nut-cell
       title="选择地址"
-      :desc="two"
+      :desc="text.two"
       is-link
       @click="showAddressExist"
     />
 
     <nut-address
-      v-model:visible="exist"
+      v-model:visible="showPopup.exist"
       type="exist"
       :exist-address="existAddress"
       :is-show-custom-address="false"
@@ -339,19 +307,19 @@ export default defineComponent({
     </h2>
     <nut-cell
       title="选择地址"
-      :desc="three"
+      :desc="text.three"
       is-link
       @click="showCustomImg"
     />
 
     <nut-address
-      v-model:visible="customImg"
+      v-model:visible="showPopup.customImg"
       type="exist"
       :exist-address="existAddress"
       :is-show-custom-address="false"
-      :default-icon="defaultIcon"
-      :selected-icon="selectedIcon"
-      :close-btn-icon="closeBtnIcon"
+      :default-icon="icon.defaultIcon"
+      :selected-icon="icon.selectedIcon"
+      :close-btn-icon="icon.closeBtnIcon"
       @close="close3"
       @selected="selected"
     >
@@ -375,20 +343,20 @@ export default defineComponent({
     </h2>
     <nut-cell
       title="选择地址"
-      :desc="four"
+      :desc="text.four"
       is-link
       @click="showAddressOther"
     />
 
     <nut-address
-      v-model:visible="other"
+      v-model:visible="showPopup.other"
       type="exist"
       :exist-address="existAddress"
       :province="address.province"
       :city="address.city"
       :country="address.country"
       :town="address.town"
-      :back-btn-icon="backBtnIcon"
+      :back-btn-icon="icon.backBtnIcon"
       @change="(cal) => onChange(cal, 'other')"
       @close="close4"
       @selected="selected"
