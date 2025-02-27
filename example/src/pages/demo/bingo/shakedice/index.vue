@@ -1,21 +1,11 @@
-<script lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
 
-export default {
-  props: {},
-  setup() {
-    const dice = ref()
-    const id = ref()
-    const jump = () => {
-      id.value = 2
-      dice.value.shake()
-    }
-    return {
-      jump,
-      dice,
-      id,
-    }
-  },
+const dice = ref()
+const id = ref()
+function jump() {
+  id.value = 2
+  dice.value.shake()
 }
 </script>
 

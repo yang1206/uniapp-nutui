@@ -6,28 +6,20 @@
 
 ### 基础用法
 
-```html
+```vue
 <template>
   <nut-shakedice ref="dice" :id="id"></nut-shakedice>
   <div @click="jump" class="demoBtn">摇动</div>
 </template>
-<script>
-  import { ref } from "vue";
-  export default {
-    setup() {
-      const dice = ref();
-      const id = ref();
-      const jump = () => {
-        id.value = 5;
-        dice.value.shake();
-      };
-      return {
-        jump,
-        dice,
-        id,
-      };
-    },
-  };
+<script lang="ts" setup>
+import { ref } from 'vue'
+
+const dice = ref()
+const id = ref()
+function jump() {
+  id.value = 2
+  dice.value.shake()
+}
 </script>
 
 <style lang="scss">
@@ -70,7 +62,12 @@
 
 ### Events
 
-| 事件名 | 说明         | 回调参数 |
+| 事件名 | 说明         | 类型 |
 | ------ | ------------ | -------- |
-| shake  | 骰子开始摇动 | -        |
-| end    | 骰子摇动结束 | -        |
+| end    | 骰子摇动结束 | ()-> boolean |
+
+### Exposes
+
+| 方法名 | 说明         | 类型 |
+| ------ | ------------ | -------- |
+| shake  | 骰子开始摇动 | ()=> true |

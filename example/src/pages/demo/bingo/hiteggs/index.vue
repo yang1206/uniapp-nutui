@@ -1,18 +1,9 @@
-<script lang="ts">
-export default {
-  props: {},
-  setup() {
-    const hit = () => {
-      uni.showToast({
-        animation: true,
-        title: '中奖了',
-      })
-    }
-
-    return {
-      hit,
-    }
-  },
+<script setup lang="ts">
+function hit() {
+  uni.showToast({
+    animation: true,
+    title: '中奖了',
+  })
 }
 </script>
 

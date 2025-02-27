@@ -1,4 +1,4 @@
-import type { ExtractPropTypes } from 'vue'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import { commonProps, makeNumericProp } from '../_utils'
 
 export const marqueeProps = {
@@ -7,7 +7,7 @@ export const marqueeProps = {
    * @description 抽奖样式
    */
   styleOpt: {
-    type: Object,
+    type: Object as PropType<Record<string, CSSProperties>>,
     default: () => {
       return {
         itemStyle: {},

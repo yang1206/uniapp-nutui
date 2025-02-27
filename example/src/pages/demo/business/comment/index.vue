@@ -1,43 +1,32 @@
-<script lang="ts">
-import { defineComponent, ref } from 'vue'
+<script setup lang="ts">
+import { ref } from 'vue'
 import { isH5 } from '@/utils/env'
 
-export default defineComponent({
-  setup() {
-    const cmt = ref()
-    /* eslint-disable no-console */
+const cmt = ref()
+/* eslint-disable no-console */
 
-    const handleclick = (info: any) => {
-      console.log('进行跳转', info)
-    }
-    const getData = () => {
-      uni.request({
-        method: 'GET',
-        url: 'https://storage.360buyimg.com/nutui/3x/comment_data.json',
-        success: (res: any) => {
-          res.data.Comment.info.avatar
+function handleclick(info: any) {
+  console.log('进行跳转', info)
+}
+function getData() {
+  uni.request({
+    method: 'GET',
+    url: 'https://storage.360buyimg.com/nutui/3x/comment_data.json',
+    success: (res: any) => {
+      res.data.Comment.info.avatar
             = 'https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png'
-          cmt.value = res.data.Comment
-        },
-      })
-    }
+      cmt.value = res.data.Comment
+    },
+  })
+}
 
-    onShow(() => {
-      getData()
-    })
-
-    const clickImages = (imgs: any) => {
-      console.log('进行图片展示', imgs)
-    }
-
-    return {
-      isH5,
-      cmt,
-      handleclick,
-      clickImages,
-    }
-  },
+onShow(() => {
+  getData()
 })
+
+function clickImages(imgs: any) {
+  console.log('进行图片展示', imgs)
+}
 </script>
 
 <template>

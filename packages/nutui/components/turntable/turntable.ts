@@ -1,6 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
 import { CLICK_EVENT } from '../_constants'
 import { commonProps, makeNumberProp } from '../_utils'
+import type { TPrizeItem } from './type'
 
 export const turntableProps = {
   ...commonProps,
@@ -22,7 +23,7 @@ export const turntableProps = {
    * 奖品列表
    */
   prizeList: {
-    type: Array<any>,
+    type: Array<TPrizeItem>,
     required: true,
     default: () => [],
   },

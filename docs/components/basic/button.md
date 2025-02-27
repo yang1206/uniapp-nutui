@@ -139,58 +139,62 @@
 
 ### Props
 
-| 参数                       | 说 明                                                                                                                                                         | 类型    | 默认值         |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | -------------- |
-| type                       | 类型，可选值为 `primary` `info` `warning` `danger``success``default`                                                                                          | string  | `default`      |
-| form-type                  | 表单类型，可选值`button``submit``reset`                                                                                                                       | string  | `button`       |
-| size                       | 尺寸，可选值为`large``small``mini``normal`                                                                                                                    | string  | `normal`       |
-| shape                      | 形状，可选值为`square``round`                                                                                                                                 | string  | `round`        |
-| custom-color               | 按钮颜色，支持传入`linear-gradient`渐变色                                                                                                                     | string  | -              |
-| plain                      | 是否为朴素按钮                                                                                                                                                | boolean | `false`        |
-| disabled                   | 是否禁用按钮                                                                                                                                                  | boolean | `false`        |
-| block                      | 是否为块级元素                                                                                                                                                | boolean | `false`        |
-| loading                    | 按钮`loading`状态                                                                                                                                             | boolean | `false`        |
-| open-type`v1.1.5`          | 小程序开放能力[查看uniapp文档](https://uniapp.dcloud.net.cn/component/button.html#open-type-%E6%9C%89%E6%95%88%E5%80%BC)                                      | string  | -              |
-| lang`v1.1.5`               | 指定返回用户信息的语言，zh_CN简体中文，zh_TW繁体中文，en英文。                                                                                                | string  | `en`           |
-| session-from`v1.1.5`       | 会话来源，open-type="contact"时有效                                                                                                                           | string  | -              |
-| send-message-title`v1.1.5` | 会话内消息卡片标题，open-type="contact"时有效                                                                                                                 | string  | -              |
-| send-message-path`v1.1.5`  | 会话内消息卡片点击跳转小程序路径，open-type="contact"时有效                                                                                                   | string  | -              |
-| send-message-img`v1.1.5`   | 会话内消息卡片图片，open-type="contact"时有效                                                                                                                 | string  | -              |
-| show-message-card`v1.1.5`  | 是否显示会话内消息卡片，设置此参数为true，用户进入客服会话会在右下角显示"可能要发送的小程序"提示，用户点击后可以快速发送小程序消息，open-type="contact"时有效 | string  | -              |
-| hover-class`v1.6.7`        | 指定按钮按下去的样式类。当hover-class="none"时，没有点击态效果                                                                                                | string  | `button-hover` |
-| hover-start-time`v1.6.7`   | 按住后多久出现点击态，单位毫秒                                                                                                                                | number  | `20`           |
-| hover-stay-time`v1.6.7`    | 手指松开后点击态保留时间，单位毫秒                                                                                                                            | number  | `70`           |
-
->`nut-button`继承了uni-appbutton的绝大部分属性，部分小程序特殊属性请查看[button](https://uniapp.dcloud.net.cn/component/button.html)
-
-### Slots
-
-| 名称    | 说明     |
-| ------- | -------- |
-| default | 按钮内容 |
-| icon    | 按钮图标 |
+| 参数                         | 说明                                                                                           | 类型      | 可选值                                                   | 默认值          |
+|----------------------------|----------------------------------------------------------------------------------------------|---------|-------------------------------------------------------|--------------|
+| type                       | 类型                                                                                           | string  | default / primary / info / success / warning / danger | default      |
+| form-type                  | 表单类型，用于 uni 的 `<form>` 组件，点击分别会触发 `<form>` 组件的 submit / reset 事件                             | string  | button / submit / reset                               | button       |
+| size                       | 尺寸                                                                                           | string  | large / normal / small / mini                         | normal       |
+| shape                      | 形状                                                                                           | string  | square / round                                        | round        |
+| custom-color               | 按钮颜色，支持传入 `linear-gradient` 渐变色                                                              | string  | -                                                     | -            |
+| plain                      | 是否为朴素按钮                                                                                      | boolean | -                                                     | `false`      |
+| disabled                   | 按钮是否为禁用状态                                                                                    | boolean | -                                                     | `false`      |
+| block                      | 是否为块级元素                                                                                      | boolean | -                                                     | `false`      |
+| loading                    | 是否为加载中状态                                                                                     | boolean | -                                                     | `false`      |
+| open-type `1.1.5`          | 开放能力                                                                                         | string  | -                                                     | -            |
+| lang `1.1.5`               | 指定返回用户信息的语言，zh_CN 简体中文 / zh_TW 繁体中文 / en 英文                                                  | string  | -                                                     | en           |
+| session-from `1.1.5`       | 会话来源，open-type="contact" 时有效                                                                 | string  | -                                                     | -            |
+| send-message-title `1.1.5` | 会话内消息卡片标题，open-type="contact" 时有效                                                            | string  | -                                                     | -            |
+| send-message-path `1.1.5`  | 会话内消息卡片点击跳转小程序路径，open-type="contact" 时有效                                                     | string  | -                                                     | -            |
+| send-message-img `1.1.5`   | 会话内消息卡片图片，open-type="contact" 时有效                                                            | string  | -                                                     | -            |
+| show-message-card `1.1.5`  | 是否显示会话内消息卡片，设置此参数为true，用户进入客服会话会在右下角显示"可能要发送的小程序"提示，用户点击后可以快速发送小程序消息，open-type="contact" 时有效 | string  | -                                                     | -            |
+| hover-class `1.6.7`        | 指定按钮按下去的样式类，当hover-class="none" 时，没有点击态效果                                                    | string  | -                                                     | button-hover |
+| hover-start-time `1.6.7`   | 按住后多久出现点击态，单位毫秒                                                                              | number  | -                                                     | `20`         |
+| hover-stay-time `1.6.7`    | 手指松开后点击态保留时间，单位毫秒                                                                            | number  | -                                                     | `70`         |
+| group-id                   | 打开群资料卡时，传递的群号，open-type="openGroupProfile" 时有效                                               | string  | -                                                     | -            |
+| guild-id                   | 打开频道页面时，传递的频道号，open-type="openGuildProfile" 时有效                                              | string  | -                                                     | -            |
+| public-id                  | 打开公众号资料卡时，传递的号码，open-type="openPublicProfile" 时有效                                            | string  | -                                                     | -            |
+| data-im-id                 | 客服的抖音号，open-type="im" 时有效                                                                    | string  | -                                                     | -            |
+| data-im-type               | IM卡片类型，open-type="im" 时有效                                                                    | string  | -                                                     | -            |
+| data-goods-id              | 商品的id，仅支持泛知识课程库和生活服务商品库中的商品，open-type="im" 时有效                                               | string  | -                                                     | -            |
+| data-order-id              | 订单的id，仅支持交易2.0订单，open-type="im" 时有效                                                          | string  | -                                                     | -            |
+| data-biz-line              | 商品类型，“1”代表生活服务，“2”代表泛知识，open-type="im" 时有效                                                   | string  | -                                                     | -            |
 
 ### Events
 
-| 事件名                             | 说明                                                             | 回调参数            |
-| ---------------------------------- | ---------------------------------------------------------------- | ------------------- |
-| click                              | 点击按钮时触发                                                   | `event: MouseEvent` |
-| getphonenumber `v1.1.5`            | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |                     |
-| getuserinfo `v1.1.5`               | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |                     |
-| error `v1.1.5`                     | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |                     |
-| opensetting `v1.1.5`               | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |                     |
-| launchapp `v1.1.5`                 | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |                     |
-| contact `v1.1.5`                   | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |                     |
-| chooseavatar `v1.1.5`              | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |                     |
-| agreeprivacyauthorization `v1.1.5` | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |                     |
-| addgroupapp `v1.1.5`               | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |                     |
-| chooseaddress `v1.1.5`             | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |                     |
-| chooseinvoicetitle `v1.1.5`        | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |                     |
-| subscribe `v1.1.5`                 | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |                     |
-| login `v1.1.5`                     | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |                     |
-| im `v1.1.5`                        | 查看[button](https://uniapp.dcloud.net.cn/component/button.html) |                     |
+| 事件名                               | 说明                                                         | 类型                                                        |
+|-----------------------------------|------------------------------------------------------------|-----------------------------------------------------------|
+| click                             | 点击按钮时触发                                                    | `(event: BaseEvent) => void`                              |
+| getphonenumber `1.1.5`            | 获取用户手机号回调                                                  | `(event: ButtonOnGetphonenumberEvent) => void`            |
+| getuserinfo `1.1.5`               | 用户点击该按钮时，会返回获取到的用户信息，从返回参数的 detail 中获取到的值同 uni.getUserInfo | `(event: any) => void`                                    |
+| error `1.1.5`                     | 当使用开放能力时，发生错误的回调                                           | `(event: ButtonOnErrorEvent) => void`                     |
+| opensetting `1.1.5`               | 在打开授权设置页并关闭后回调                                             | `(event: ButtonOnOpensettingEvent) => void`               |
+| launchapp `1.1.5`                 | 从小程序打开 App 成功的回调                                           | `(event: ButtonOnLaunchappEvent) => void`                 |
+| contact `1.1.5`                   | 客服消息回调                                                     | `(event: any) => void`                                    |
+| chooseavatar `1.1.5`              | 获取用户头像回调                                                   | `(event: ButtonOnChooseavatarEvent) => void`              |
+| agreeprivacyauthorization `1.1.5` | 用户同意隐私协议事件回调                                               | `(event: ButtonOnAgreeprivacyauthorizationEvent) => void` |
+| addgroupapp `1.1.5`               | 添加群应用的回调                                                   | `(event: ButtonOnAddgroupappEvent) => void`               |
+| chooseaddress `1.1.5`             | 调起用户编辑并选择收货地址的回调                                           | `(event: ButtonOnChooseaddressEvent) => void`             |
+| chooseinvoicetitle `1.1.5`        | 用户选择发票抬头的回调                                                | `(event: ButtonOnChooseinvoicetitleEvent) => void`        |
+| subscribe `1.1.5`                 | 订阅消息授权回调                                                   | `(event: ButtonOnSubscribeEvent) => void`                 |
+| login `1.1.5`                     | 登录回调                                                       | `(event: ButtonOnLoginEvent) => void`                     |
+| im `1.1.5`                        | 监听跳转IM的成功回调                                                | `(event: any) => void`                                    |
 
-> `nut-button`继承了 uni-app button的open-type回调事件，请查看[button](https://uniapp.dcloud.net.cn/component/button.html)
+### Slots
+
+| 名称      | 说明   |
+|---------|------|
+| default | 按钮内容 |
+| icon    | 按钮图标 |
 
 ## 主题定制
 
@@ -198,8 +202,8 @@
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](/components/basic/configprovider)。
 
-| 名称                                   | 默认值                                                                                                                          |
-| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| 名称                                     | 默认值                                                                                                                             |
+|----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|
 | --nut-button-border-radius             | 25px                                                                                                                            |
 | --nut-button-border-width              | 1px                                                                                                                             |
 | --nut-button-icon-width                | 16px                                                                                                                            |
